@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import FrameworkContainer from "./components/frameworkContainer/FrameworkContainer.js"
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,7 +8,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { withStyles } from "@material-ui/core/styles";
+// import Input from "@material-ui/core/Input";
 
+const styles = theme => ({
+  select: {
+      '&:after': {
+        borderBottomColor: 'white',
+      },
+      '&:before': {
+        borderBottomColor: 'white'
+      }
+  }
+});
 
 class App extends Component {
 
@@ -51,6 +64,8 @@ class App extends Component {
   render() {
     const { classes } = this.props;
 
+    let counter = 0
+
     // This will sort the array of frameworks based on the parameter saved in state.
     // It will sort ascending this will be fixed when we map the data to our FrameworkContainers
     this.state.frameworks.sort((a,b) => {
@@ -74,29 +89,49 @@ class App extends Component {
               Framework Overview
             </Typography>
 
-            <div>
-              <FormControl style={{color: "white", borderBottomColor: "white" }}>
-                <Select style={{ color: "white" }} autowidth={true} value={this.state.sortBy} onChange={this.handleChange}>
+              <FormControl style={{ marginLeft: "50px"}}>
+                <Select 
+                  className={classes.select}
+                  style={{ color: "white" }} 
+                  value={this.state.sortBy} 
+                  onChange={this.handleChange}
+                  inputProps={{
+                    icon: classes.icon
+                  }}
+                  >
                   <MenuItem value={"stars"}>Stars</MenuItem>
                   <MenuItem value={"forks"}>Forks</MenuItem>
                   <MenuItem value={"issues"}>Issues</MenuItem>
                 </Select>
                 <FormHelperText style={{color: "white"}}>What would you like to sort by?</FormHelperText>
               </FormControl>
-            </div>
 
           </Toolbar>
         </AppBar>
         <div className="container">
-          <div className="row center">
+          {/* <div className="row center"> */}
             { this.state.frameworks.reverse().map((framework) => {
-              return <FrameworkContainer key={framework.name} name={framework.name} stars={framework.stars} forks={framework.forks} issues={framework.issues} />
+              counter++
+              console.log(counter)
+              return ( <FrameworkContainer 
+                key={framework.name} 
+                position={counter}
+                name={framework.name} 
+                stars={framework.stars} 
+                forks={framework.forks} 
+                issues={framework.issues} 
+                issuesLink={framework.issuesLink} 
+              />)
             })}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(App);
