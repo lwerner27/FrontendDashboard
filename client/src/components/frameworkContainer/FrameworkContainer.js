@@ -14,11 +14,12 @@ class FrameworkContainer extends React.Component {
         return (
             <div className="row">
                 <div className="col s12 m2 offset-m4">
+                
                     <h5 style={{borderBottom: "solid black 2px"}}>{`${this.props.position})`} {this.capitalize(this.props.name)}</h5>
                     <ul>
                         <li><strong>Stars: </strong>{this.addCommas(this.props.stars)}</li>
                         <li><strong>Forks: </strong>{this.addCommas(this.props.forks)}</li>
-                        <li><strong>Issues: </strong><a href={this.props.issuesLink}>{this.addCommas(this.props.issues)}</a></li>
+                        <li><strong>Issues: </strong><a href={this.props.issuesLink} target="_blank" rel="noopener noreferrer">{this.addCommas(this.props.issues)}</a></li>
                     </ul>
 
                 </div>
