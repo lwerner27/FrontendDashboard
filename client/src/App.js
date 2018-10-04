@@ -9,6 +9,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = theme => ({
   select: {
@@ -24,6 +27,9 @@ const styles = theme => ({
 class App extends Component {
 
   state = {
+    showStars: true,
+    showForks: true,
+    showIssues: true,
     frameworks: [],
     sortBy: "stars"
   }
@@ -58,6 +64,10 @@ class App extends Component {
 
   handleChange = event => {
     this.setState({ sortBy: event.target.value });
+  };
+
+  handleCheck = name => event => {
+    this.setState({ [name]: event.target.checked });
   };
 
   render() {
@@ -107,7 +117,44 @@ class App extends Component {
 
           </Toolbar>
         </AppBar>
+
+
         <div className="container">
+          <div className="row center">
+            <div className="col s12 m4 offset-m3">
+              <FormGroup row >
+                <FormControlLabel
+                  label="Show Stars"
+                  control={
+                    <Checkbox
+                    checked={this.state.showStars}
+                    onChange={this.handleCheck('showStars')}
+                    />
+                  }
+                  />
+
+                <FormControlLabel
+                  label="Show Forks"
+                  control={
+                    <Checkbox
+                    checked={this.state.showForks}
+                    onChange={this.handleCheck('showForks')}
+                    />
+                  }
+                  />
+
+                <FormControlLabel
+                  label="Show Issues"
+                  control={
+                    <Checkbox
+                    checked={this.state.showIssues}
+                    onChange={this.handleCheck('showIssues')}
+                    />
+                  }
+                  />
+              </FormGroup>
+            </div>
+          </div>
           { this.state.frameworks.reverse().map((framework) => {
             counter++
             console.log(counter)
