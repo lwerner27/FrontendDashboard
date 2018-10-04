@@ -9,7 +9,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
-// import Input from "@material-ui/core/Input";
 
 const styles = theme => ({
   select: {
@@ -109,21 +108,19 @@ class App extends Component {
           </Toolbar>
         </AppBar>
         <div className="container">
-          {/* <div className="row center"> */}
-            { this.state.frameworks.reverse().map((framework) => {
-              counter++
-              console.log(counter)
-              return ( <FrameworkContainer 
-                key={framework.name} 
-                position={counter}
-                name={framework.name} 
-                stars={framework.stars} 
-                forks={framework.forks} 
-                issues={framework.issues} 
-                issuesLink={framework.issuesLink} 
-              />)
-            })}
-          {/* </div> */}
+          { this.state.frameworks.reverse().map((framework) => {
+            counter++
+            console.log(counter)
+            return ( <FrameworkContainer 
+              key={framework.name} 
+              position={counter}
+              name={framework.name} 
+              stars={framework.stars} 
+              forks={framework.forks} 
+              issues={framework.issues} 
+              issuesLink={framework.issuesLink} 
+            />)
+          })}
         </div>
       </div>
     );
