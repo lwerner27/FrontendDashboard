@@ -120,9 +120,13 @@ class App extends Component {
 
 
         <div className="container">
+
+        {/* This is a row for holding the checkboxes that hide or show value */}
           <div className="row center">
             <div className="col s12 m4 offset-m3">
               <FormGroup row >
+
+                {/* Check/uncheck this box to show/hide the star values */}
                 <FormControlLabel
                   label="Show Stars"
                   control={
@@ -133,6 +137,7 @@ class App extends Component {
                   }
                   />
 
+                {/* Check/uncheck this box to show/hide the fork values */}
                 <FormControlLabel
                   label="Show Forks"
                   control={
@@ -143,6 +148,7 @@ class App extends Component {
                   }
                   />
 
+                {/* Check/uncheck this box to show/hide the issue values */}
                 <FormControlLabel
                   label="Show Issues"
                   control={
@@ -152,9 +158,12 @@ class App extends Component {
                     />
                   }
                   />
+                  
               </FormGroup>
             </div>
           </div>
+
+          {/* Here is where we programmatically generate the info for each framework */}
           { this.state.frameworks.reverse().map((framework) => {
             counter++
             console.log(counter)
