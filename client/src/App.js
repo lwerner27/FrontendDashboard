@@ -27,9 +27,11 @@ const styles = theme => ({
 class App extends Component {
 
   state = {
-    showStars: true,
-    showForks: true,
-    showIssues: true,
+    checkBoxes: {
+      showStars: true,
+      showForks: true,
+      showIssues: true
+    },
     frameworks: [],
     sortBy: "stars"
   }
@@ -67,7 +69,9 @@ class App extends Component {
   };
 
   handleCheck = name => event => {
-    this.setState({ [name]: event.target.checked });
+    let newCheckboxes = this.state.checkBoxes
+    newCheckboxes[name] = event.target.checked
+    this.setState({checkBoxes: newCheckboxes})
   };
 
   render() {
@@ -131,7 +135,7 @@ class App extends Component {
                   label="Show Stars"
                   control={
                     <Checkbox
-                    checked={this.state.showStars}
+                    checked={this.state.checkBoxes.showStars}
                     onChange={this.handleCheck('showStars')}
                     />
                   }
@@ -142,7 +146,7 @@ class App extends Component {
                   label="Show Forks"
                   control={
                     <Checkbox
-                    checked={this.state.showForks}
+                    checked={this.state.checkBoxes.showForks}
                     onChange={this.handleCheck('showForks')}
                     />
                   }
@@ -153,7 +157,7 @@ class App extends Component {
                   label="Show Issues"
                   control={
                     <Checkbox
-                    checked={this.state.showIssues}
+                    checked={this.state.checkBoxes.showIssues}
                     onChange={this.handleCheck('showIssues')}
                     />
                   }
@@ -169,6 +173,7 @@ class App extends Component {
             console.log(counter)
             return ( <FrameworkContainer 
               key={framework.name} 
+              checkBoxes={this.state.checkBoxes}
               position={counter}
               name={framework.name} 
               stars={framework.stars} 
