@@ -1,7 +1,11 @@
 # Basic Frontend Dashboard
+[Heroku Link](https://enigmatic-cliffs-22759.herokuapp.com/)
 
 ### Summary
 This is my basic frontend dashboard. It is designed to show some relevent information that may be useful when trying to determine what is best framework to use.
+
+### Build Notes 
+This app was built using Node and Express as the webserver with React and Material UI for the front end.
 
 ### Key Features
 * Three key traits that can be used to help you identify the framework that is right for you. 
